@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
+		<style>
+		.sapMComboBoxTextFieldArrow{
+		font-size : large !important
+		}
+		.sapMOH{
+		padding : 0rem !important
+		}
+		.sapMBtnInner{
+		min-width: 5.0rem !important
+		}
+		</style>
+
+		<script src="https://sapui5.hana.ondemand.com/1.52.18/resources/sap-ui-core.js"
+				id="sap-ui-bootstrap"
+				data-sap-ui-libs="sap.m, sap.ui.layout , sap.uxap"
+				data-sap-ui-theme="sap_bluecrystal"
+				data-sap-ui-xx-bindingSyntax = "complex"
+				data-sap-ui-resourceroots='{"hospital":"./"}'
+				data-sap-ui-preload="async">
+		</script>
+		<!-- only load the mobile lib "sap.m" and the "sap_bluecrystal" theme -->
+
+		<script>
+		sap.ui.getCore().attachInit(function(){
+			new sap.m.Shell("Shell",{
+				app:new sap.ui.core.ComponentContainer({
+					name:"hospital"
+				})
+			}).placeAt("content");
+		});
+		</script>
+
+	</head>
+	<body class="sapUiBody" role="application">
+		<div id="content"></div>
+	</body>
+</html>

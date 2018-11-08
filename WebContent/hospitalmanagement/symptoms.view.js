@@ -10,6 +10,7 @@ sap.ui.jsview("hospital.hospitalmanagement.symptoms", {
      * @memberOf hospitalmanagement.symptoms
      */
     getControllerName: function() {
+    	debugger;
         return "hospital.hospitalmanagement.symptoms";
     },
 
@@ -23,8 +24,71 @@ sap.ui.jsview("hospital.hospitalmanagement.symptoms", {
         let oImg;
         let oModel = oController.getOwnerComponent().getModel("oHospitalModel");
         let sProblem = oModel.getProperty("/presentPatient/Patientproblem");
+        let sDoctorSpecification;
         let sId = oModel.getProperty("/presentPatient/Patientid");
+      
+        oView.oDetails = new sap.uxap.ObjectPageLayout({
+            showTitleInHeaderContent: true,
+            showHeaderContent: true,
+            enableLazyLoading: false,
+            headerTitle: [
+                new sap.uxap.ObjectPageHeader({
+                    objectImageURI: "img/img1.jpg",
+                    objectImageShape: sap.uxap.ObjectPageHeaderPictureShape.Circle,
+                    objectTitle: "{oHospitalModel>/presentDoctor/DoctorNames}",
+                    objectSubtitle: "{oHospitalModel>/presentDoctor/DocSpecification}",
+                    /*objectTitle: oBundle.getText("std.ABC"),
+                    objectSubtitle: oBundle.getText("std.pediatrician"),*/
+                    isObjectIconAlwaysVisible: false,
+                    isObjectTitleAlwaysVisible: false,
+                    showPlaceholder: true,
+                    isObjectSubtitleAlwaysVisible: false
+
+                })
+            ],
+            headerContent: [
+                new sap.ui.layout.VerticalLayout({
+                    content: [
+                        new sap.m.ObjectStatus({
+                            title: oBundle.getText("std.mobileNo"),
+                            text: "{oHospitalModel>/presentDoctor/DoctorMobno}"
+//                            text: oBundle.getText("std.2187897897")
+                        }),
+                        new sap.m.ObjectStatus({
+                            title: oBundle.getText("std.mailId"),
+//                            text: oBundle.getText("std.ABC@gmail.com")
+                             text: "{oHospitalModel>/presentDoctor/DoctorMailid}"
+                        })
+                    ]
+                }),
+                new sap.m.ToolbarSpacer({
+                    width: '300px'
+                }),
+                new sap.ui.layout.VerticalLayout({
+                    content: [
+                        new sap.m.ObjectHeader({
+                            title: oBundle.getText("std.availableTimings")
+                        }),
+                        new sap.m.ObjectStatus({
+                            title: oBundle.getText("std.Morning"),
+//                            text: "9.00 AM" + "-" + "11.00 AM"
+                            text: "{oHospitalModel>/presentDoctor/DoctorFromtime}" //+ "-" + "{oModel>/presentDoctor/DoctorTotime}"
+                        }),
+                        new sap.m.ObjectStatus({
+                            title: oBundle.getText("std.Afternoon"),
+//                            text: "2.00 PM" + "-" + "4.00 PM"
+                            text: "{oHospitalModel>/presentDoctor/DoctorFromtime1}" + "-" + "{oModel>/presentDoctor/DoctorTotime1}"
+                        })/*,
+                        new sap.m.ObjectStatus({
+                            title: oBundle.getText("std.Evening"),
+                            text: "7.00 PM" + "-" + "9.00 PM"
+                        })*/
+                    ]
+                })
+            ]
+        })
         if (sProblem == oBundle.getText("std.fever")) {
+        	sDoctorSpecification == oBundle.getText("std.pediatrition");
             let oFeverSymptomsModel = new sap.ui.model.json.JSONModel({
                 fever: {
                     days: "",
@@ -34,6 +98,7 @@ sap.ui.jsview("hospital.hospitalmanagement.symptoms", {
                 }
             });
             this.setModel(oFeverSymptomsModel, "oFeverModel");
+            
             oView.oForm = new sap.ui.layout.form.Form({
                 layout: new sap.ui.layout.form.ResponsiveGridLayout({}),
                 formContainers: [
@@ -84,7 +149,7 @@ sap.ui.jsview("hospital.hospitalmanagement.symptoms", {
                     })
                 ]
             });
-            oView.oDetails = new sap.uxap.ObjectPageLayout({
+           /* oView.oDetails = new sap.uxap.ObjectPageLayout({
                 showTitleInHeaderContent: true,
                 showHeaderContent: true,
                 enableLazyLoading: false,
@@ -92,6 +157,8 @@ sap.ui.jsview("hospital.hospitalmanagement.symptoms", {
                     new sap.uxap.ObjectPageHeader({
                         objectImageURI: "img/img1.jpg",
                         objectImageShape: sap.uxap.ObjectPageHeaderPictureShape.Circle,
+                        objectTitle: "{oModel>/doctorsList/DoctorNames}",
+                        objectSubtitle: "{oModel>/doctorsList/DocSpecification}",
                         objectTitle: oBundle.getText("std.ABC"),
                         objectSubtitle: oBundle.getText("std.pediatrician"),
                         isObjectIconAlwaysVisible: false,
@@ -106,11 +173,13 @@ sap.ui.jsview("hospital.hospitalmanagement.symptoms", {
                         content: [
                             new sap.m.ObjectStatus({
                                 title: oBundle.getText("std.mobileNo"),
-                                text: oBundle.getText("std.2187897897")
+                                text: "{oModel>/doctorsList/DoctorMobno}"
+//                                text: oBundle.getText("std.2187897897")
                             }),
                             new sap.m.ObjectStatus({
                                 title: oBundle.getText("std.mailId"),
-                                text: oBundle.getText("std.ABC@gmail.com")
+//                                text: oBundle.getText("std.ABC@gmail.com")
+                                 text: "{oModel>/doctorsList/DoctorMailid}"
                             })
                         ]
                     }),
@@ -125,6 +194,7 @@ sap.ui.jsview("hospital.hospitalmanagement.symptoms", {
                             new sap.m.ObjectStatus({
                                 title: oBundle.getText("std.Morning"),
                                 text: "9.00 AM" + "-" + "11.00 AM"
+//                                text: "{oModel>/doctorsList/Doc"
                             }),
                             new sap.m.ObjectStatus({
                                 title: oBundle.getText("std.Afternoon"),
@@ -137,11 +207,12 @@ sap.ui.jsview("hospital.hospitalmanagement.symptoms", {
                         ]
                     })
                 ]
-            });
+            });*/
 
 
         }
         if (sProblem == oBundle.getText("std.heartPain")) {
+        	sDoctorSpecification == oBundle.getText("std.heart");
         	let oHeartPainSymptomsModel = new sap.ui.model.json.JSONModel({
                 pain: {
                 	areaOfPain:"",
@@ -211,7 +282,7 @@ sap.ui.jsview("hospital.hospitalmanagement.symptoms", {
                     })
                 ]
             });
-            oView.oDetails = new sap.uxap.ObjectPageLayout({
+            /*oView.oDetails = new sap.uxap.ObjectPageLayout({
                 showTitleInHeaderContent: true,
                 showHeaderContent: true,
                 enableLazyLoading: false,
@@ -283,7 +354,7 @@ sap.ui.jsview("hospital.hospitalmanagement.symptoms", {
                         ]
                     })
                 ]
-            });
+            });*/
         }
         oView.oHeaderPanel = oView.createHeaderPanel();
 

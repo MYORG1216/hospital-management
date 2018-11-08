@@ -97,11 +97,11 @@ sap.ui.define([
               return false
           }
           if (aAppointedData) {
-              aAppointedData.forEach((sId, oCnt) => {
+              aAppointedData.forEach((oObject) => {
                   debugger;
-                  if (parseInt(sId.Patientid) == oLogInDetails.id) {
+                  if (parseInt(oObject.Patientid) == oLogInDetails.id) {
                       debugger;
-                      oHospitalModel.setProperty("/presentPatient",sId)
+                      oHospitalModel.setProperty("/presentPatient",oObject)
                       sExist = oBundle.getText("std.yes");
 
                   }
@@ -111,8 +111,8 @@ sap.ui.define([
 
           if (sExist == oBundle.getText("std.yes")) {
               oController.getOwnerComponent().getRouter().navTo("symptoms");
-               
 				ologInModel.setProperty("/logIn",{ });
+				oView.oCreateDialog.close();
           } else {
               alert(oBundle.getText("std.pleaseRegisterFirst"));
               oView.oCreateDialog.close();

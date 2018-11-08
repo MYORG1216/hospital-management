@@ -1,5 +1,7 @@
-jQuery.sap.declare("hospital.Component");
-sap.ui.core.UIComponent.extend("hospital.Component", {
+sap.ui.define([
+	"sap/ui/core/UIComponent"
+],function(UIComponent){
+return UIComponent.extend("hospital.Component", {
     metadata: {
         rootView: {
             viewName: "hospital.hospitalmanagement.hospital",
@@ -63,6 +65,7 @@ sap.ui.core.UIComponent.extend("hospital.Component", {
         }
     },
     init: function() {
+    	debugger;
         let oData = new sap.ui.model.json.JSONModel({
             appointedPatients: {
                 patientsList: []
@@ -75,6 +78,19 @@ sap.ui.core.UIComponent.extend("hospital.Component", {
                 Patientproblem: "",
                 Patientmobileno: "",
                 Patientaddress: ""
+            },
+            docotorDetails: { 
+            	doctorsList:[]
+            },
+            presentDoctor:{
+            	DocSpecification:"",
+            	DoctorNames:"",
+            	DoctorMobno:"",
+            	DoctorMailid:"",
+            	DoctorFromtime:"",
+            	DoctorTotime:"",
+            	DoctorFromtime1:"",
+            	DoctorTotime1:""
             },
             aTablets: [{
             	title:"fever",
@@ -222,7 +238,8 @@ sap.ui.core.UIComponent.extend("hospital.Component", {
         window.oBundle= jQuery.sap.resources({
         	url:"hospitalmanagement/i18/i18n.properties",
         })
-        sap.ui.core.UIComponent.prototype.init.apply(this, arguments);
+        UIComponent.prototype.init.apply(this, arguments);
         this.getRouter().initialize();
     }
-})
+});
+});

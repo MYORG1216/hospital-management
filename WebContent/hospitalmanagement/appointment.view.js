@@ -59,7 +59,7 @@ sap.ui.jsview("hospital.hospitalmanagement.appointment", {
                                 text: oBundle.getText("std.patientId")
                             }),
                             fields: new sap.m.Input({
-                                width: "50%",
+//                                width: "50%",
                                 maxLength: 3,
                                 value: "{oLModel>/logIn/id}"
                             })
@@ -69,7 +69,7 @@ sap.ui.jsview("hospital.hospitalmanagement.appointment", {
                                 text: oBundle.getText("std.patientName")
                             }),
                             fields: new sap.m.Input({
-                                width: "50%",
+//                                width: "50%",
                                 value: "{oLModel>/logIn/name}"
                             })
                         })
@@ -87,7 +87,7 @@ sap.ui.jsview("hospital.hospitalmanagement.appointment", {
                                 text: oBundle.getText("std.patientId")
                             }),
                             fields: new sap.m.Input({
-                                width: "50%",
+//                                width: "50%",
                                 maxLength: 3,
                                 value: "{opModel>/ItAppointment/patientid}"
                             })
@@ -97,7 +97,7 @@ sap.ui.jsview("hospital.hospitalmanagement.appointment", {
                                 text: oBundle.getText("std.patientName")
                             }),
                             fields: new sap.m.Input({
-                                width: "50%",
+//                                width: "50%",
                                 value: "{opModel>/ItAppointment/patientname}"
                             })
                         }),
@@ -109,7 +109,7 @@ sap.ui.jsview("hospital.hospitalmanagement.appointment", {
                                 min: 1.0000,
                                 max: 80.0000,
                                 step: 1.0000,
-                                width: "50%",
+//                                width: "50%",
                                 value: "{opModel>/ItAppointment/patientage}"
                             })
                         }),
@@ -120,7 +120,7 @@ sap.ui.jsview("hospital.hospitalmanagement.appointment", {
                             fields: [
                                 new sap.m.RadioButtonGroup("grp", {
                                     columns: 2,
-                                    width: "50%",
+//                                    width: "50%",
                                     selectedIndex: -1,
                                     buttons: [
                                         new sap.m.RadioButton("female", {
@@ -143,7 +143,7 @@ sap.ui.jsview("hospital.hospitalmanagement.appointment", {
                                 text: oBundle.getText("std.patientProbelm")
                             }),
                             fields: new sap.m.ComboBox({
-                                width: "50%",
+//                                width: "50%",
                                 placeholder: oBundle.getText("std.chooseOne"),
                                 selectedKey: "{opModel>/ItAppointment/patientproblem}",
                                 showSecondaryValues: true
@@ -162,7 +162,7 @@ sap.ui.jsview("hospital.hospitalmanagement.appointment", {
                                 text: oBundle.getText("std.patientMobileNo")
                             }),
                             fields: new sap.m.Input({
-                                width: "50%",
+//                                width: "50%",
                                 maxLength: 10,
                                 value: "{opModel>/ItAppointment/patientmobileno}",
                                 liveChange: (oEvt) => {
@@ -180,7 +180,7 @@ sap.ui.jsview("hospital.hospitalmanagement.appointment", {
                             fields: new sap.m.TextArea({
                                 col: 10,
                                 growing: true,
-                                width: "50%",
+//                                width: "50%",
                                 value: "{opModel>/ItAppointment/patientaddress}"
                             })
                         })
@@ -196,11 +196,11 @@ sap.ui.jsview("hospital.hospitalmanagement.appointment", {
         		contentRight:[
         			new sap.m.Button({
                         text: oBundle.getText("std.register"),
-                        width: "25%",
+//                        width: "25%",
                         press: () => {
                             debugger;
                             oView.oDialogCreate = new sap.m.Dialog({
-                            	contentWidth: "60%",
+//                            	contentWidth: "60%",
                             	customHeader:[
                             		new sap.m.Bar({
                             			contentMiddle: [
@@ -241,11 +241,11 @@ sap.ui.jsview("hospital.hospitalmanagement.appointment", {
         			contentLeft:[
                     new sap.m.Button({
                         text: oBundle.getText("std.login"),
-                        width: "25%",
+//                        width: "25%",
                         press: () => {
                             debugger;
                             oView.oCreateDialog = new sap.m.Dialog({
-                                contentWidth: "40%",
+//                                contentWidth: "40%",
                                 customHeader: [
                                     new sap.m.Bar({
                                         contentMiddle: [

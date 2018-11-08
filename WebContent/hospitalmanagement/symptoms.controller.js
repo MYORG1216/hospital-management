@@ -1,18 +1,59 @@
 sap.ui.define([
-        "hospital/hospitalmanagement/icon/icon"
+        "hospital/hospitalmanagement/icon/icon",
+        "hospital/hospitalmanagement/base"
     ],
-    (oIcons, oUserConstants) => {
+    (oIcons, oBase) => {
         "use strict";
-sap.ui.controller("hospital.hospitalmanagement.symptoms", {
+        let oMaster = oBase.extend("hospital.hospitalmanagement.symptoms", {	
+//sap.ui.controller("hospital.hospitalmanagement.symptoms", {
 
     /**
      * Called when a controller is instantiated and its View controls (if available) are already created.
      * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
      * @memberOf hospitalmanagement.symptoms
      */
-    //	onInit: function() {
-    //
-    //	},
+    	onInit: function() {
+    		debugger;
+    		let oController = this,
+            oView = oController.getView(),
+            oHospitalModel = this.getOwnerComponent().getModel("oHospitalModel");
+    		let oRouter = this.getOwnerComponent().getRouter();
+    		if(oRouter){
+    			debugger;
+    			oRouter.attachRoutePatternMatched("hospital.hospitalmanagement.symptoms",(oEvent)=>{
+    				debugger;
+    				this.callServer( { }, "Z1136_API_READ_DOCTORSLIST", (oResponse)=> {
+        		    	debugger;
+        		    	let sDoctorSpecification;
+        		    	let sProblem = oHospitalModel.getProperty("/presentPatient/Patientproblem");
+        		    	if( sProblem == "Fever"){
+        		    		sDoctorSpecification = "PEDIATRITION"
+        		    	} else{
+        		    		sDoctorSpecification = "HEART SPECIALIST"
+        		    	}
+        		    	oHospitalModel.setProperty("/docotorDetails/doctorsList",[ ] );
+        		    			oHospitalModel.setProperty("/docotorDetails/doctorsList",oResponse.EtDoctors);
+        		    			  let aDoctors = oHospitalModel.getProperty("/docotorDetails/doctorsList");
+        		    	        if(aDoctors){
+        		    	        	debugger;
+        		    	        	aDoctors.forEach((oObject)=>{
+        		    	        		debugger;
+        		    	        		if(oObject.DocSpecification == sDoctorSpecification){
+        		    	        			oHospitalModel.setProperty("/presentDoctor",oObject)
+        		    	        		}
+        		    	        	})
+        		    	        }
+        		    	        
+        		    	
+        		    },(oResponse)=> {
+        		    	debugger;
+        		    	
+        		    });
+    			})
+    		}
+    		
+    
+    	},
 
     /**
      * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
